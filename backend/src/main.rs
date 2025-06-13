@@ -1,13 +1,14 @@
 mod db;
 mod docs;
 mod entities;
+mod middleware;
 mod routes;
 mod services;
 mod utils;
 
 use std::{net::SocketAddr, sync::Arc};
 
-use axum::http::{header, Method};
+use axum::{http::{header, Method}, extract::connect_info::ConnectInfo};
 use dotenvy::dotenv;
 use migration::{Migrator, MigratorTrait};
 use tower_http::{
@@ -109,7 +110,7 @@ async fn main() -> anyhow::Result<()> {
 
     // 启动服务器
     axum::Server::bind(&addr)
-        .serve(app.into_make_service())
+        .serve(app.into_make_service_with_connect_info::<SocketAddr>())
         .await?;
 
     Ok(())

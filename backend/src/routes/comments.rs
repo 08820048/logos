@@ -1,7 +1,9 @@
 use axum::{
-    extract::{Path, Query, State},
+    extract::{Path, Query, State, ConnectInfo},
+    http::StatusCode,
     Json,
 };
+use std::net::SocketAddr;
 use serde::{Deserialize, Serialize};
 use utoipa::{IntoParams, ToSchema};
 
@@ -10,6 +12,7 @@ use crate::{
     routes::AppState,
     services::comment_service::{CreateCommentDto, UpdateCommentStatusDto},
     utils::auth::AuthUser,
+    middleware::rate_limit::{RateLimiter, RateLimitConfig},
 };
 
 #[derive(Debug, Deserialize, IntoParams)]
@@ -113,8 +116,22 @@ pub async fn list_comments_handler(
 pub async fn create_comment_handler(
     State(state): State<AppState>,
     Path(post_id): Path<i32>,
+    ConnectInfo(addr): ConnectInfo<SocketAddr>,
     Json(req): Json<CreateCommentRequest>,
 ) -> Result<Json<comment::Model>, crate::utils::error::AppError> {
+    // 获取全局限流器
+    let config = RateLimitConfig {
+        window_seconds: 60,  // 1分钟窗口
+        max_requests: 5,     // 每分钟最多5个请求
+    };
+    let limiter = RateLimiter::global(config);
+    
+    // 检查IP是否应该被限流
+    if limiter.should_limit(&addr.ip()) {
+        return Err(crate::utils::error::AppError::BadRequest(
+            "Too many requests, please try again later".to_string()
+        ));
+    }
     let nickname = req.nickname.unwrap_or_else(|| "匿名".to_string());
 
     let dto = CreateCommentDto {

@@ -1,8 +1,9 @@
 use axum::{
-    routing::{get, post, delete, put, on},
     Router,
     http::Method,
     routing::MethodFilter,
+    routing::{get, post, delete, put, on},
+    middleware,
 };
 use std::sync::Arc;
 

@@ -46,6 +46,8 @@ uuid = { version = "1.6.1", features = ["v4", "serde"] }
 
 # RSS
 rss = "2.0.6"
+futures = "0.3.31"
+http-body = "1.0.1"
 
 [dev-dependencies]
 mockall = "0.12.1"
