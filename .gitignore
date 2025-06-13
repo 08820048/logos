@@ -1,0 +1,61 @@
+# Rust项目通用忽略
+/target/
+**/target/
+**/*.rs.bk
+*.pdb
+
+# 保留Cargo.lock在二进制项目中，忽略在库项目中
+# 更多信息参见: https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html
+# Cargo.lock
+
+# 环境变量文件
+.env
+.env.*
+!.env.example
+
+# 数据库文件
+*.db
+*.sqlite
+*.sqlite3
+
+# 日志文件
+*.log
+logs/
+
+# IDE相关
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# 构建输出
+/dist/
+/build/
+
+# 依赖目录
+/node_modules/
+
+# 测试覆盖率报告
+/coverage/
+
+# 临时文件
+/tmp/
+/temp/
+
+# 个人配置文件（可能包含敏感信息）
+config.local.js
+config.dev.js
+
+# 编译后的文件
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+
+# 其他常见的忽略文件
+*.bak
+*.tmp
+*~
