@@ -1,0 +1,52 @@
+[package]
+name = "logos_blog"
+version = "0.1.0"
+edition = "2021"
+authors = ["Logos Team"]
+description = "A lightweight, high-performance blog system backend"
+
+[dependencies]
+# Web 框架
+axum = { version = "0.6.20", features = ["headers", "macros", "json", "query", "multipart"] }
+tower = "0.4.13"
+tower-http = { version = "0.4.0", features = ["cors", "trace", "limit", "fs"] }
+
+# API文档
+utoipa = { version = "4.1.0", features = ["axum_extras", "chrono"] }
+utoipa-swagger-ui = { version = "5.0.0", features = ["axum"] }
+tokio = { version = "1.35.1", features = ["full"] }
+hyper = { version = "0.14.27", features = ["full"] }
+
+# 数据库
+sea-orm = { version = "0.12.14", features = ["sqlx-mysql", "runtime-tokio-rustls", "macros", "with-chrono"] }
+migration = { path = "migration" }
+
+# 认证与安全
+jsonwebtoken = "9.2.0"
+argon2 = "0.5.3"
+rand = "0.8.5"
+
+# 日志与配置
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+dotenvy = "0.15.7"
+
+# 序列化与反序列化
+serde = { version = "1.0.195", features = ["derive"] }
+serde_json = "1.0.111"
+
+# 已移除 Markdown 渲染依赖，由前端处理
+
+# 工具
+chrono = { version = "0.4.31", features = ["serde"] }
+thiserror = "1.0.56"
+anyhow = "1.0.79"
+validator = { version = "0.16.1", features = ["derive"] }
+uuid = { version = "1.6.1", features = ["v4", "serde"] }
+
+# RSS
+rss = "2.0.6"
+
+[dev-dependencies]
+mockall = "0.12.1"
+tokio-test = "0.4.3"

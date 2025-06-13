@@ -1,0 +1,11 @@
+/Users/xuyi/Documents/blog_rust/backend/target/debug/deps/libmigration-d73033eb8bf03c32.rmeta: migration/src/lib.rs migration/src/m20250613_000001_create_users_table.rs migration/src/m20250613_000002_create_posts_table.rs migration/src/m20250613_000003_create_tags_table.rs migration/src/m20250613_000004_create_post_tags_table.rs migration/src/m20250613_000005_create_comments_table.rs migration/src/m20250613_000006_create_links_table.rs
+
+/Users/xuyi/Documents/blog_rust/backend/target/debug/deps/migration-d73033eb8bf03c32.d: migration/src/lib.rs migration/src/m20250613_000001_create_users_table.rs migration/src/m20250613_000002_create_posts_table.rs migration/src/m20250613_000003_create_tags_table.rs migration/src/m20250613_000004_create_post_tags_table.rs migration/src/m20250613_000005_create_comments_table.rs migration/src/m20250613_000006_create_links_table.rs
+
+migration/src/lib.rs:
+migration/src/m20250613_000001_create_users_table.rs:
+migration/src/m20250613_000002_create_posts_table.rs:
+migration/src/m20250613_000003_create_tags_table.rs:
+migration/src/m20250613_000004_create_post_tags_table.rs:
+migration/src/m20250613_000005_create_comments_table.rs:
+migration/src/m20250613_000006_create_links_table.rs:
